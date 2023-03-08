@@ -12,6 +12,19 @@
   gap:0.75rem 0.4rem;
 }
 
+.modal-menu {
+  position: fixed;
+  min-width: 550px;
+  left: 50%;
+  top: 4.5em;
+  transform: translate(-50%);
+  border: var(--border);
+  border-radius: 5px;
+  background-color: white;
+  padding: 1em 1em 1em 1em;
+  z-index: 1000;
+}
+
 .navigation {
   grid-area : nav;
 }
@@ -44,4 +57,13 @@
     grid-template-areas: "nav" "content";
   }
   
+  .modal-menu {
+    min-width: 60px;
+    left: 0.5em;
+    right: 0.5em;
+    top: 3.5em;
+    transform: translate(0%);
+  }
+  
 }
+
