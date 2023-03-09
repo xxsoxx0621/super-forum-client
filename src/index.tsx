@@ -13,12 +13,11 @@ const root = ReactDOM.createRoot(
 );
 root.render(
   <React.StrictMode>
-    <Provider store={configureStore()}>
       <BrowserRouter>
+      <Provider store={configureStore()}>
         <ErrorBoundary>{[<App key="App" />]}</ErrorBoundary>
-      </BrowserRouter>
     </Provider>
-    <App />
+    </BrowserRouter>
   </React.StrictMode>
 );
 
