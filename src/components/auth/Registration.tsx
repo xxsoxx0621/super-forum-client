@@ -6,18 +6,18 @@ import {
 } from "../../common/validators/PasswordValidator";
 import { ModalProps } from "../types/ModalProps";
 import { allowSubmit } from "./common/Helpers";
+import PasswordComparison from "./common/PasswordComparison";
 import userReducer from "./common/UserReducer";
 
 const Registration: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
-  const [isRegisterDisabled, setRegisterDisabled] = useState(true);
   const [
-    { userName, password, email, passwrodConfirm, resultMsg, isSubmitDisabeld },
+    { userName, password, email, passwordConfirm, resultMsg, isSubmitDisabeld },
     dispatch,
   ] = useReducer(userReducer, {
     userName: "sohyeon",
     password: "",
     email: "admin@sohyeon.com",
-    passwrodConfirm: "",
+    passwordConfirm: "",
     resultMsg: "",
     isSubmitDisabeld: true,
   });
@@ -45,7 +45,7 @@ const Registration: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
       allowSubmit(dispatch, passwordCheck.message, true);
       return;
     }
-    passwordsSame(passwrodConfirm, e.target.value);
+    passwordsSame(passwordConfirm, e.target.value);
   };
 
   const onChangePasswordConfirm = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -98,12 +98,10 @@ const Registration: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
               <input type="text" value={email} onChange={onChangeEmail} />
             </div>
             <div>
-              <label>password</label>
-              <input
-                type="password"
-                placeholder="Password"
-                value={password}
-                onChange={onChangePassword}
+              <PasswordComparison
+                dispatch={dispatch}
+                password={password}
+                passwordConfirm={passwordConfirm}
               />
             </div>
             <div>
@@ -111,7 +109,7 @@ const Registration: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
               <input
                 type="password"
                 placeholder="Password Confirmation"
-                value={passwrodConfirm}
+                value={passwordConfirm}
                 onChange={onChangePasswordConfirm}
               />
             </div>
@@ -120,7 +118,7 @@ const Registration: FC<ModalProps> = ({ isOpen, onClickToggle }) => {
                 <button
                   style={{ marginLeft: ".5em" }}
                   className="action-btn"
-                  disabled={isRegisterDisabled}
+                  disabled={isSubmitDisabeld}
                   onClick={onClickRegister}
                 >
                   Register

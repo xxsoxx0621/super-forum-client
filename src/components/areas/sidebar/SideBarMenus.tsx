@@ -21,18 +21,7 @@ const SideBarMenus = () => {
   const [showLogout, setShowLogout] = useState(false);
 
   const user = useSelector((state: AppState) => state.user);
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch({
-      type: UserProfileSetType,
-      payload: {
-        id: 1,
-        userName: "testUser",
-      },
-    });
-  }, [dispatch]);
-
+  
   const onClickToggleRegister = () => {
     setShowRegister(!showRegister);
   };
